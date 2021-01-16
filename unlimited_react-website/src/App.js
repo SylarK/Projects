@@ -1,14 +1,16 @@
+import React from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Wassup!</h1>
-      <ul>
-        <li>npm start react-icons --save</li>
-        <li>npm start react-router-dom</li>
-      </ul>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route path='/' />
+      </Switch>
+    </Router>
   );
 }
 
