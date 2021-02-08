@@ -1,9 +1,31 @@
 import React, { useState, useEffect } from 'react';
 // by default runs after every re-render
 // cleanup function
-// second parameter
+// second parameter (dependency list), when change something in the dependency list will be affected
 const UseEffectBasics = () => {
-  return <h2>useEffect Basics</h2>;
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (value > 1) {
+      document.title = `New Messages(${value})`;
+    }
+  }, [value]);
+
+  useEffect(() => {
+    console.log('heelo world');
+  }, []);
+
+  return (
+    <>
+      <h1>{value}</h1>
+      <button
+        className="btn"
+        onClick={() => setValue((prevState) => prevState + 1)}
+      >
+        Click me
+      </button>
+    </>
+  );
 };
 
 export default UseEffectBasics;

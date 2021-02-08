@@ -1,29 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const UseStateCounter = () => {
-  const [value, setValue] = useState(0)
+  const [value, setValue] = useState(0);
 
   const reset = () => {
-    setValue(0)
-  }
+    setValue(0);
+  };
+
+  const complexIncrease = () => {
+    setTimeout(() => {
+      setValue((prevCount) => {
+        return prevCount + 1;
+      });
+    }, 2000);
+    //callback, timesecond value in milleseconds
+  };
 
   return (
     <>
       <section style={{ margin: '4rem 0' }}>
         <h2>Regular counter</h2>
         <h1>{value}</h1>
-        <button className='btn' onClick={() => setValue(value - 1)}>
+        <button className="btn" onClick={() => setValue(value - 1)}>
           decrease
         </button>
-        <button className='btn' onClick={reset}>
+        <button className="btn" onClick={reset}>
           reset
         </button>
-        <button className='btn' onClick={() => setValue(value + 1)}>
+        <button className="btn" onClick={() => setValue(value + 1)}>
           increase
         </button>
       </section>
-    </>
-  )
-}
 
-export default UseStateCounter
+      <section style={{ margin: '4rem 0' }}>
+        <h2>Regular counter</h2>
+        <h1>{value}</h1>
+        <button className="btn" onClick={complexIncrease}>
+          Increase
+        </button>
+      </section>
+    </>
+  );
+};
+
+export default UseStateCounter;
