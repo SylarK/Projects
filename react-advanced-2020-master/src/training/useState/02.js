@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useStateTraining = () => {
+const StateTraining = () => {
   const [data, setData] = React.useState({
     name: 'Lucas Amado',
     age: 26,
@@ -37,4 +37,4 @@ const useStateTraining = () => {
   );
 };
 
-export default useStateTraining;
+export default StateTraining;
