@@ -1,20 +1,28 @@
 import React from 'react';
-import TodoItem from './TodoItem';
+import Info from './Info';
+import FilteredList from './FilteredList';
+import Header from './Header';
+import Footer from './Footer';
+import { applyFilter, search } from '../services/filter';
 
-function TodoList(props) {
-  const { title, items } = props;
+export default function TodoList(props) {
+  const { list, filter, mode, query } = props.data;
+  const {
+    addNew,
+    changeFilter,
+    changeStatus,
+    changeMode,
+    setSearchQuery,
+  } = props.actions;
+  const count = list.length;
+  const items = search(applyFilter(items, filter), query);
 
   return (
     <div className="todolist">
-      <h1>{title.toUpperCase()}</h1>
-
-      <ul className="list-unstyled">
-        {items.map((item) => (
-          <TodoItem data={item} />
-        ))}
-      </ul>
+      <Header {...{ addNew, mode, query, setSearchQuery }} />
+      <FilteredList {...{ items, changeStatus }} />
+      <Footer {...{ count, filter, changeFilter, mode, changeMode }} />
+      <Info {...{ mode }} />
     </div>
   );
 }
-
-export default TodoList;
